@@ -60,21 +60,36 @@ a:link {
   text-decoration: none;
 }
 
-/* Full height image header */
-/* .bgimg-1 {
-  background-position: top;
-  background-size: cover;
-  background-attachment:fixed;
-  background-image: url(images/banner.jpg);
-  min-height:100%;
-} */
+.btn-grad {
+            background-image: linear-gradient(to right, #7474BF 0%, #348AC7  51%, #7474BF  100%);
+            margin: 0px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+
+
 
 .w3-bar .w3-button {
   padding: 12px;
 }
 </style>
 
-<body class="bgimg-1">
+<body class="bgimg-1" style="background-color: #8EC5FC;
+background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+">
 
 <?PHP include("menu.php"); ?>
 
@@ -86,7 +101,7 @@ a:link {
     <div class="w3-content w3-container w3-white w3-round w3-card" style="max-width:500px; border-radius:20px">
 		<div class="w3-padding">
 			<form action="" method="post">
-				<div class="w3-center"><img src="images/logo.png" class="w3-image"></div>
+				<div class="w3-center" style="pointer-events: none;"><img src="images/logo.png" class="w3-image"></div>
 				<hr>
 			
 				
@@ -122,7 +137,7 @@ a:link {
 				</div>
 	
 				<input name="act" type="hidden" value="login">
-				<button type="submit" class="w3-button w3-block w3-padding-large w3-blue w3-margin-bottom w3-round"><b>LOGIN</b></button>
+				<button type="submit" class="btn-grad w3-button w3-block w3-padding-large w3-blue w3-margin-bottom w3-round"><b>LOGIN</b></button>
 			</form>
 			
 		<div class="w3-center w3-padding">Don’t have an account?  <a href="register.php" class="w3-text-blue">Sign Up</a></div>
@@ -133,11 +148,9 @@ a:link {
     </div>
 </div>
 
-<div class="w3-padding-16"></div>
-
-<!-- <img src="/images/wave.svg" alt="Wave Image"> -->
-
-</div>
+<footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 174px;">
+    <p>&copy; 2023 FK KIOSK. All rights reserved.</p>
+</footer>
 
 
  

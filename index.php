@@ -61,16 +61,16 @@ a:link {
 }
 
 /* Full height image header */
-.bgimg-1 {
+/* .bgimg-1 {
   background-position: top;
   background-size: cover;
   background-attachment:fixed;
   background-image: url(images/banner.jpg);
   min-height:100%;
-}
+} */
 
 .w3-bar .w3-button {
-  padding: 16px;
+  padding: 12px;
 }
 </style>
 
@@ -83,12 +83,12 @@ a:link {
 	<div class="w3-padding-48"></div>
 		
 <div class="w3-container w3-padding-16" id="contact">
-    <div class="w3-content w3-container w3-white w3-round w3-card" style="max-width:500px">
+    <div class="w3-content w3-container w3-white w3-round w3-card" style="max-width:500px; border-radius:20px">
 		<div class="w3-padding">
 			<form action="" method="post">
 				<div class="w3-center"><img src="images/logo.png" class="w3-image"></div>
 				<hr>
-				<h3><b>Login User</b></h3>
+			
 				
 				<?PHP if($error) { ?>			
 				<div class="w3-container w3-padding-32" id="contact">
@@ -103,15 +103,18 @@ a:link {
 				
 				
 				<div class="w3-section" >
-					<label>Email *</label>
+				<label>Email <span style="color: red;">*</span></label>
+
 					<input class="w3-input w3-border w3-round" type="email" name="email"  required>
 				</div>
 				<div class="w3-section">
-					<label>Password *</label>
+				<label>Password <span style="color: red;">*</span></label>
+
 					<input class="w3-input w3-border w3-round" type="password" name="password" required>
 				</div>
 				<div class="w3-section">
-					<label>Role *</label>
+				<label>Role <span style="color: red;">*</span></label>
+
 					<select class="w3-input w3-border w3-round" name="role" required>
 						<option value="user">User</option>
 						<option value="vendor">Vendor</option>
@@ -132,7 +135,8 @@ a:link {
 
 <div class="w3-padding-16"></div>
 
-	
+<!-- <img src="/images/wave.svg" alt="Wave Image"> -->
+
 </div>
 
 

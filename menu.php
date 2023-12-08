@@ -2,13 +2,11 @@
 <div class="w3-top">
   <div class="w3-bar w3-large w3-whitex w3-card" id="myNavbar">
 
-	&nbsp;<a href="index.php" class="w3-bar-item1"><img src="images/logo.png" class="w3-padding-small" height="65"></a>
+	
 
 
     <!-- Right-sided navbar links -->
-    <div class="w3-right w3-hide-small"> 	  		
-		<a href="about.php" class="w3-bar-item w3-button">ABOUT</a>
-		<a href="index.php" class="w3-bar-item w3-button">LOGIN</a>	  
+    <div class="w3-left w3-hide-small"> 	  		
 		<a href="admin.php" class="w3-bar-item w3-button">ADMIN</a>	  		
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->

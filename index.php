@@ -118,17 +118,17 @@ background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
 				
 				
 				<div class="w3-section" >
-				<label>Email <span style="color: red;">*</span></label>
+				<label><b>Email</b> <span style="color: red;">*</span></label>
 
 					<input class="w3-input w3-border w3-round" type="email" name="email"  required>
 				</div>
 				<div class="w3-section">
-				<label>Password <span style="color: red;">*</span></label>
+				<label> <b>Password</b> <span style="color: red;">*</span></label>
 
 					<input class="w3-input w3-border w3-round" type="password" name="password" required>
 				</div>
 				<div class="w3-section">
-				<label>Role <span style="color: red;">*</span></label>
+				<label> <b> Role </b> <span style="color: red;">*</span></label>
 
 					<select class="w3-input w3-border w3-round" name="role" required>
 						<option value="user">User</option>

@@ -85,9 +85,9 @@ $name 		= $data["name"];
 
 			<div class="w3-large w3-buttonx w3-bar-item w3-right w3-white w3-dropdown-hover">
 				<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> User <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
-				<div class="w3-dropdown-content w3-bar-block w3-card-4">
+				<div class="w3-dropdown-content w3-bar-block w3-card-4" style="min-width: 54px;">
 					<a href="profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i> Profile</a>
-					<a href="logout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Signout</a>
+					<a href="logout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Logout</a>
 				</div>
 			</div>
 

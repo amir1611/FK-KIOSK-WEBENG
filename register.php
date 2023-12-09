@@ -187,7 +187,7 @@ if (($act == "register") && (!$error)) {
 				<div class="w3-padding">
 
 					<?PHP if ($success) { ?>
-						<div class="w3-panel w3-green w3-display-container w3-animate-zoom">
+						<div class="w3-panel w3-green w3-display-container w3-animate-zoom" style="width:451px ;">
 							<span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
 							<h3>Your registration was successful!</h3>
 							<?PHP if ($role == "vendor") echo "Waiting for admin approval"; ?>

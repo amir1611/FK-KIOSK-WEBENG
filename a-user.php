@@ -84,6 +84,29 @@ if ($act == "del") {
 		.w3-biru {
 			background-color: #f6f9ff;
 		}
+
+		         
+		.btn-grad {
+            background-image: linear-gradient(to right, #43cea2 0%, #185a9d  51%, #43cea2  100%);
+            margin: 10px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+
 	</style>
 </head>
 
@@ -151,7 +174,7 @@ if ($act == "del") {
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 							<thead>
-								<tr>
+								<tr style="text-align: center;">
 									<th>#</th>
 									<th>Name</th>
 									<th>Contact</th>
@@ -169,18 +192,18 @@ if ($act == "del") {
 								$id_user	= $data["id_user"];
 							?>
 								<tr>
-									<td><?PHP echo $bil; ?></td>
-									<td><?PHP echo $data["name"]; ?></td>
-									<td><?PHP echo $data["phone"]; ?></td>
-									<td><?PHP echo $data["email"]; ?></td>
-									<td><?PHP echo $data["role"]; ?></td>
-									<td>
+									<td style="text-align: center;"><?PHP echo $bil; ?></td>
+									<td style="text-align: center;"><?PHP echo $data["name"]; ?></td>
+									<td style="text-align: center;"><?PHP echo $data["phone"]; ?></td>
+									<td style="text-align: center;"><?PHP echo $data["email"]; ?></td>
+									<td style="text-align: center;"><?PHP echo $data["role"]; ?></td>
+									<td style="text-align: center;">
 										<a href="#" onclick="document.getElementById('idEdit<?PHP echo $bil; ?>').style.display='block'" class="w3-padding"><i class="fas fa-edit"></i></a>
 										<a href="#" onclick="document.getElementById('idDelete<?PHP echo $bil; ?>').style.display='block'" class="w3-text-red"><i class="fas fa-trash-alt"></i></a>
 									</td>
 
 								</tr>
-								<div id="idEdit<?PHP echo $bil; ?>" class="w3-modal" style="z-index:10;">
+								<div id="idEdit<?PHP echo $bil; ?>" class="w3-modal" style="z-index:10; border-radius:-17px; background-color: rgb(0 0 0 / 81%);">
 									<div class="w3-modal-content w3-round-large w3-card-4 w3-animate-zoom" style="max-width:500px">
 										<header class="w3-container ">
 											<span onclick="document.getElementById('idEdit<?PHP echo $bil; ?>').style.display='none'" class="w3-button w3-large w3-circle w3-display-topright "><i class="fa fa-fw fa-times"></i></span>
@@ -190,41 +213,47 @@ if ($act == "del") {
 
 											<form action="" method="post" enctype="multipart/form-data">
 												<div class="w3-padding"></div>
-												<b class="w3-large">Update </b>
+												<div style="text-align: center;">
+    <b class="w3-large">Update User</b>
+</div>
+
 												<hr>
 
 												<div class="w3-section">
-													<label>Role *</label>
+													<label style="font-weight: bold; color: black;">Role <span style="color: red;">*</span></label>
 													<select class="w3-input w3-border w3-round" name="role" required>
 														<option value="user" <?PHP if ($data["role"] == "user") echo "selected"; ?>>User</option>
 														<option value="vendor" <?PHP if ($data["role"] == "vendor") echo "selected"; ?>>Vendor</option>
 													</select>
 												</div>
 
-												<div class="w3-section ">
-													Full Name *
-													<input class="w3-input w3-border w3-round" type="text" name="name" value="<?PHP echo $data["name"]; ?>" placeholder="Enter user name" required>
+												<div class="w3-section">
+													<label style="font-weight: bold; color: black;">Full Name <span style="color: red;">*</span></label>
+													<input class="w3-input w3-border w3-round" type="text" name="name" value="<?php echo $data["name"]; ?>" placeholder="Enter user name" required>
 												</div>
 
-												<div class="w3-section ">
-													Contact
-													<input class="w3-input w3-border w3-round" type="text" name="phone" value="<?PHP echo $data["phone"]; ?>" placeholder="">
+
+												<div class="w3-section">
+													<label style="font-weight: bold; color: black;">Contact <span style="color: red;">*</span></label>
+													<input class="w3-input w3-border w3-round" type="text" name="phone" value="<?php echo $data["phone"]; ?>" placeholder="">
 												</div>
 
-												<div class="w3-section ">
-													Email
-													<input class="w3-input w3-border w3-round" type="email" name="email" value="<?PHP echo $data["email"]; ?>" placeholder="">
+
+												<div class="w3-section">
+													<label style="font-weight: bold; color: black;">Email <span style="color: red;">*</span></label>
+													<input class="w3-input w3-border w3-round" type="email" name="email" value="<?php echo $data["email"]; ?>" placeholder="">
 												</div>
 
-												<div class="w3-section ">
-													Password
-													<input class="w3-input w3-border w3-round" type="password" name="password" value="<?PHP echo $data["password"]; ?>" placeholder="">
+
+												<div class="w3-section">
+													<label style="font-weight: bold; color: black;">Password <span style="color: red;">*</span></label>
+													<input class="w3-input w3-border w3-round" type="password" name="password" value="<?php echo $data["password"]; ?>" placeholder="">
 												</div>
 
-												<hr class="w3-clear">
+
 												<input type="hidden" name="id_user" value="<?PHP echo $data["id_user"]; ?>">
 												<input type="hidden" name="act" value="edit">
-												<button type="submit" class="w3-button w3-blue w3-margin-bottom w3-round">SAVE CHANGES</button>
+												<button type="submit" class="btn-grad w3-button w3-blue w3-margin-bottom w3-round" style="margin-left: 161px;">UPDATE</button>
 
 											</form>
 										</div>
@@ -251,9 +280,9 @@ if ($act == "del") {
 
 												<input type="hidden" name="id_user" value="<?PHP echo $data["id_user"]; ?>">
 												<input type="hidden" name="act" value="del">
-												<button type="button" onclick="document.getElementById('idDelete<?PHP echo $bil; ?>').style.display='none'" class="w3-button w3-black w3-margin-bottom w3-round">NO</button>
+												<button type="button" onclick="document.getElementById('idDelete<?PHP echo $bil; ?>').style.display='none'" class="w3-right w3-button w3-black w3-margin-bottom w3-round" style="margin-right: 180px;">NO</button>
 
-												<button type="submit" class="w3-right w3-button w3-red w3-margin-bottom w3-round">YES, DELETE</button>
+												<button type="submit" class="w3-left w3-button w3-red w3-margin-bottom w3-round" style="margin-left: 150px;">YES</button>
 
 											</form>
 										</div>

@@ -129,7 +129,7 @@ if ($act == "Reject") {
 				<div class="w3-row w3-white w3-padding">
 
 					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center;">
 							<thead>
 								<tr>
 									<th>#</th>
@@ -157,8 +157,9 @@ if ($act == "Reject") {
 									<td><a target="_blank" class="w3-tag w3-round" href="upload/<?PHP echo $data["document"]; ?>">View</a></td>
 									<td><?PHP echo $data["status"]; ?></td>
 									<td>
-										<a href="?act=Approved&id_user=<?PHP echo $id_user; ?>" class="w3-button w3-green"><i class="fas fa-check"></i> Approve</a>
-										<a href="?act=Reject&id_user=<?PHP echo $id_user; ?>" class="w3-button w3-red"><i class="fas fa-times"></i> Reject</a>
+										<a href="?act=Approved&id_user=<?PHP echo $id_user; ?>" class="w3-button w3-green" style="border-radius: 20px;"><i class="fas fa-check"></i> Approve</a>
+										<a href="?act=Reject&id_user=<?PHP echo $id_user; ?>" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-times"></i> Reject</a>
+
 									</td>
 
 								</tr>

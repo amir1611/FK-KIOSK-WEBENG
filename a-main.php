@@ -23,6 +23,9 @@ $tot_approved	= numRows($con, "SELECT * FROM `user` WHERE `role` = 'vendor' AND 
 	<link rel="stylesheet" href="w3.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- ApexCharts -->
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 
 	<style>
 		html,
@@ -60,6 +63,8 @@ $tot_approved	= numRows($con, "SELECT * FROM `user` WHERE `role` = 'vendor' AND 
 		.glow-animation {
 			animation: glow 3s infinite;
 		}
+
+		
 	</style>
 </head>
 
@@ -118,6 +123,8 @@ $tot_approved	= numRows($con, "SELECT * FROM `user` WHERE `role` = 'vendor' AND 
 		<div class="w3-container w3-content w3-xxlarge " style="max-width:1200px;"> <b>Dashboard </b> </div>
 
 
+
+
 		<div class="w3-container">
 
 			<!-- Page Container -->
@@ -159,8 +166,11 @@ $tot_approved	= numRows($con, "SELECT * FROM `user` WHERE `role` = 'vendor' AND 
 					</div>
 
 
+
 					<!-- End Grid -->
 				</div>
+
+
 
 				<!-- End Page Container -->
 			</div>
@@ -168,8 +178,18 @@ $tot_approved	= numRows($con, "SELECT * FROM `user` WHERE `role` = 'vendor' AND 
 
 
 
+
 		</div>
 		<!-- container end -->
+
+
+   
+		<div id="myChart" style="height: 250px; max-width: 1200px; margin-bottom: -50px;"></div>
+
+
+
+
+
 
 
 
@@ -182,8 +202,31 @@ $tot_approved	= numRows($con, "SELECT * FROM `user` WHERE `role` = 'vendor' AND 
 	</div>
 
 	<script>
-		var openInbox = document.getElementById("myBtn");
-		openInbox.click();
+		var totUser = <?php echo $tot_user; ?>;
+		var totVendor = <?php echo $tot_vendor; ?>;
+		var totPending = <?php echo $tot_pending; ?>;
+		var totApproved = <?php echo $tot_approved; ?>;
+
+		var options = {
+			chart: {
+				type: 'donut',
+				height: 250, // Set the height of the chart
+				background: 'transparent', // Set the background color
+			},
+			labels: ['User', 'Vendor', 'Pending Approval', 'Approved'],
+			series: [totUser, totVendor, totPending, totApproved],
+			colors: ['#3498db', '#2ecc71', '#e74c3c', '#f1c40f'],
+			plotOptions: {
+				pie: {
+					donut: {
+						size: '50%', // Set the size of the donut
+					}
+				}
+			}
+		};
+
+		var chart = new ApexCharts(document.querySelector("#myChart"), options);
+		chart.render();
 
 		function w3_open() {
 			document.getElementById("mySidebar").style.display = "block";
@@ -207,6 +250,10 @@ $tot_approved	= numRows($con, "SELECT * FROM `user` WHERE `role` = 'vendor' AND 
 			}
 		}
 	</script>
+
+
+
+
 
 </body>
 

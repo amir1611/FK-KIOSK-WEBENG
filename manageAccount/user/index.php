@@ -1,6 +1,6 @@
 <?PHP
 session_start();
-include("database.php");
+include("../../config/database.php");
 $act = (isset($_POST['act'])) ? trim($_POST['act']) : '';
 
 $error = "";
@@ -45,7 +45,7 @@ if($act == "login")
 <title>FKKIOSK</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="../../w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -101,7 +101,7 @@ background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
     <div class="w3-content w3-container w3-white w3-round w3-card" style="max-width:500px; border-radius:20px">
 		<div class="w3-padding">
 			<form action="" method="post">
-				<div class="w3-center" style="pointer-events: none;"><img src="images/logo.png" class="w3-image"></div>
+				<div class="w3-center" style="pointer-events: none;"><img src="../../images/logo.png" class="w3-image"></div>
 				<hr>
 			
 				

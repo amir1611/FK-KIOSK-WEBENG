@@ -2,7 +2,7 @@
 session_start();
 ?>
 <?PHP
-include("database.php");
+include("../../config/database.php");
 $act = (isset($_POST['act'])) ? trim($_POST['act']) : '';
 
 $error = "";
@@ -36,7 +36,7 @@ if ($act == "login") {
 <title>FKKIOSK</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="../../w3.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -98,11 +98,7 @@ if ($act == "login") {
 
 <body>
 
-	<?PHP include("menu.php"); ?>
-
-
-	<div class="bgimg-1" style="background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
-">
+<div class="bgimg-1" style="background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);">
 
 		<div class="w3-padding-32"></div>
 
@@ -115,7 +111,7 @@ if ($act == "login") {
 			<div class="w3-content w3-container w3-white w3-round w3-card" style="max-width:500px; border-radius: 20px;">
 				<div class="w3-padding">
 					<form action="" method="post">
-						<div class="w3-center" style="pointer-events: none;"> <img src="images/logo.png" class="w3-image"></div>
+						<div class="w3-center" style="pointer-events: none;"> <img src="../../images/logo.png" class="w3-image"></div>
 						<hr>
 
 						<?PHP if ($error) { ?>
@@ -144,7 +140,7 @@ if ($act == "login") {
 						<button type="submit" class="btn-grad w3-button w3-block w3-padding-large w3-blue w3-margin-bottom w3-round"><b>LOGIN</b></button>
 					</form>
 
-					<div class="w3-center w3-padding"><a href="index.php" class="w3-text-blue">Login as User</a></div>
+					<div class="w3-center w3-padding"><a href="../user/index.php" class="w3-text-blue">Login as User</a></div>
 
 				</div>
 

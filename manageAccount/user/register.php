@@ -1,6 +1,6 @@
 <?PHP
 
-include("database.php");
+include("../../config/database.php");
 $act 		= (isset($_POST['act'])) ? trim($_POST['act']) : '';
 $name 		= (isset($_POST['name'])) ? trim($_POST['name']) : '';
 $role 		= (isset($_POST['role'])) ? trim($_POST['role']) : '';
@@ -77,7 +77,7 @@ if (($act == "register") && (!$error)) {
 <title>FKKIOSK</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="../../w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -205,7 +205,7 @@ if (($act == "register") && (!$error)) {
 					<?PHP if (!$success) { ?>
 
 						<form method="post" action="" enctype="multipart/form-data">
-							<div class="w3-center" style="pointer-events: none;"><img src="images/logo.png" class="w3-image"></div>
+							<div class="w3-center" style="pointer-events: none;"><img src="../../images/logo.png" class="w3-image"></div>
 							<hr>
 
 							<div class="w3-section">

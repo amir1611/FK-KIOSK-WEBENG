@@ -10,4 +10,45 @@ Email:
 Password:
 
 
+## Getting Started
+## Deployment
 
+To deploy this project run
+
+```bash
+  USER & VENDOR
+  http://localhost:{REPLACE WITH YOUR PORT NUMBER}/manageAccount/user/index.php
+```
+
+```bash
+  ADMIN
+  http://localhost:{REPLACE WITH YOUR PORT NUMBER}/manageAccount/admin/admin.php
+```
+
+
+
+## Credentials
+
+Login
+
+```bash
+  USER 
+
+  Email: user@gmail.com
+  Password: 1234
+```
+
+```bash
+  Vendor
+
+  Email: vendor@gmail.com
+  Password: 1234
+```
+
+
+```bash
+  Admin
+
+  Username: admin
+  Password: 1234
+```

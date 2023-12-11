@@ -155,7 +155,7 @@ if ($act == "Reject") {
 									<td><?PHP echo $data["name"]; ?></td>
 									<td><?PHP echo $data["phone"]; ?></td>
 									<td><?PHP echo $data["email"]; ?></td>
-									<td><a target="_blank" class="w3-tag w3-round" href="upload/<?PHP echo $data["document"]; ?>">View</a></td>
+									<td><a target="_blank" class="w3-tag w3-round" href="../../upload/<?PHP echo $data["document"]; ?>">View</a></td>
 									<td><?PHP echo $data["status"]; ?></td>
 									<td>
 										<a href="?act=Approved&id_user=<?PHP echo $id_user; ?>" class="w3-button w3-green" style="border-radius: 20px;"><i class="fas fa-check"></i> Approve</a>

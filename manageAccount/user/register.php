@@ -58,7 +58,7 @@ if (($act == "register") && (!$error)) {
 			}
 
 			if (empty($errors) == true) {
-				move_uploaded_file($file_tmp, "upload/" . $file_name);
+				move_uploaded_file($file_tmp, "../../upload/" . $file_name);
 
 				$query = "UPDATE `user` SET `document`='$file_name' WHERE `id_user` = '$id_user'";
 				$result = mysqli_query($con, $query) or die("Error in query: " . $query . "<br />" . mysqli_error($con));

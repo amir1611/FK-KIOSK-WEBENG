@@ -85,28 +85,27 @@ if ($act == "del") {
 			background-color: #f6f9ff;
 		}
 
-		         
+
 		.btn-grad {
-            background-image: linear-gradient(to right, #43cea2 0%, #185a9d  51%, #43cea2  100%);
-            margin: 10px;
-            padding: 15px 45px;
-            text-align: center;
-            text-transform: uppercase;
-            transition: 0.5s;
-            background-size: 200% auto;
-            color: white;            
-            box-shadow: 0 0 20px #eee;
-            border-radius: 10px;
-            display: block;
-          }
+			background-image: linear-gradient(to right, #43cea2 0%, #185a9d 51%, #43cea2 100%);
+			margin: 10px;
+			padding: 15px 45px;
+			text-align: center;
+			text-transform: uppercase;
+			transition: 0.5s;
+			background-size: 200% auto;
+			color: white;
+			box-shadow: 0 0 20px #eee;
+			border-radius: 10px;
+			display: block;
+		}
 
-          .btn-grad:hover {
-            background-position: right center; /* change the direction of the change here */
-            color: #fff;
-            text-decoration: none;
-          }
-         
-
+		.btn-grad:hover {
+			background-position: right center;
+			/* change the direction of the change here */
+			color: #fff;
+			text-decoration: none;
+		}
 	</style>
 </head>
 
@@ -180,16 +179,17 @@ if ($act == "del") {
 									<th>Contact</th>
 									<th>Email</th>
 									<th>Role</th>
+									<th>Document</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<?PHP
 							$bil = 0;
-							$SQL_list = "SELECT * FROM `user` ";
+							$SQL_list = "SELECT * FROM `user` WHERE `status` = 'Approved'";
 							$result = mysqli_query($con, $SQL_list);
-							while ($data	= mysqli_fetch_array($result)) {
+							while ($data = mysqli_fetch_array($result)) {
 								$bil++;
-								$id_user	= $data["id_user"];
+								$id_user = $data["id_user"];
 							?>
 								<tr>
 									<td style="text-align: center;"><?PHP echo $bil; ?></td>
@@ -198,6 +198,13 @@ if ($act == "del") {
 									<td style="text-align: center;"><?PHP echo $data["email"]; ?></td>
 									<td style="text-align: center;"><?PHP echo $data["role"]; ?></td>
 									<td style="text-align: center;">
+										<a target="_blank" class="w3-tag w3-round" href="../../upload/<?php echo $data["document"]; ?>">View</a>
+									</td>
+
+
+									<td style="text-align: center;">
+										<a href="a-viewprofile.php?id_user=<?php echo $id_user; ?>" class="w1-padding"><i class="fas fa-eye"></i></a>
+
 										<a href="#" onclick="document.getElementById('idEdit<?PHP echo $bil; ?>').style.display='block'" class="w3-padding"><i class="fas fa-edit"></i></a>
 										<a href="#" onclick="document.getElementById('idDelete<?PHP echo $bil; ?>').style.display='block'" class="w3-text-red"><i class="fas fa-trash-alt"></i></a>
 									</td>
@@ -214,8 +221,8 @@ if ($act == "del") {
 											<form action="" method="post" enctype="multipart/form-data">
 												<div class="w3-padding"></div>
 												<div style="text-align: center;">
-    <b class="w3-large">Update User</b>
-</div>
+													<b class="w3-large">Update User</b>
+												</div>
 
 												<hr>
 

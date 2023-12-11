@@ -3,4 +3,11 @@
 ONLINE KIOSK MANAGEMENT SYSTEM FOR FACULTY OF COMPUTING, UMPSA
 
 
+## Getting Started
+
+User
+Email:
+Password:
+
+
 

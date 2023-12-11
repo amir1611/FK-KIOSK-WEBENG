@@ -7,7 +7,7 @@
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
-/*LAST MODIFIED: 11.45AM - 11/12/2023 - AMIR */
+/*LAST MODIFIED: 12.00 PM - 11/12/2023 - AMIR */
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `email`) VALUES
-(1, 'admin', 'admin', 'admin@gmail.com');
+(1, 'admin', '1234', 'admin@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -65,8 +65,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `role`, `name`, `phone`, `email`, `password`, `document`, `status`) VALUES
-(5, 'vendor', 'Muhammad Hanif', '0198888888', 'vendor@gmail.com', 'vendor', 'sample.pdf', 'Pending'),
-(6, 'user', 'Nur Atirah', '0198888888', 'demo@gmail.com', 'demo', 'sample.jpg', 'Approved');
+(1, 'vendor', 'Muhammad Hanif', '0198888888', 'vendor@gmail.com', '1234', 'user.pdf', 'Pending'),
+(2, 'user', 'Nur Atirah', '0198888888', 'user@gmail.com', '1234', 'vendor.pdf', 'Approved');
 
 --
 -- Indexes for dumped tables

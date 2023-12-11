@@ -136,15 +136,12 @@ background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
 					</select>
 				</div>
 					
-				<a href="register.php" class="w3-text-blue" style="display: block; text-align: right;"> <b> Forgot Your Password?</b></a>
-
-					<br>
 				<input name="act" type="hidden" value="login">
 				<button type="submit" class="btn-grad w3-button w3-block w3-padding-large w3-blue w3-margin-bottom w3-round"><b>LOGIN</b></button>
 			</form>
 			
 		<div class="w3-center w3-padding">Don’t have an account?  <a href="register.php" class="w3-text-blue">Sign Up</a></div>
-		<div class="w3-center w3-padding">Login as Guest?  <a href="register.php" class="w3-text-blue">Guest Login</a></div>
+		<div class="w3-center w3-padding">Login as Guest?  <a href="main.php" class="w3-text-blue">Guest Login</a></div>
 	</div>
 		
 		
@@ -152,7 +149,7 @@ background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
     </div>
 </div>
 
-<footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 77px;">
+<footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 131px;">
     <p>&copy; 2023 FK KIOSK. All rights reserved.</p>
 </footer>
 

@@ -72,22 +72,18 @@
         <div class="w3-white w3-bar w3-card ">
 
 
-            <i class="fa fa-bars w3-buttonx w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top"
-                onclick="w3_open()"></i>
+			<i class="fa fa-bars w3-buttonx w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
 
 
-            <div class="w3-large w3-buttonx w3-bar-item w3-right w3-white w3-dropdown-hover">
-                <button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> User <i
-                        class="fa fa-fw fa-chevron-down w3-small"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4" style="min-width: 54px;">
-                    <a href="profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i>
-                        Profile</a>
-                    <a href="../../config/userlogout.php" class="w3-bar-item w3-button"><i
-                            class="fa fa-fw fa-sign-out-alt "></i> Logout</a>
-                </div>
-            </div>
+			<div class="w3-large w3-buttonx w3-bar-item w3-right w3-white w3-dropdown-hover">
+				<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> Vendor <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
+				<div class="w3-dropdown-content w3-bar-block w3-card-4">
+					<a href="../../manageAccount/profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i> Profile</a>
+					<a href="../../config/userlogout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Signout</a>
+				</div>
+			</div>
 
-        </div>
+		</div>
 
         <div class=" w3-center w3-text-white w3-padding">
             <span class="w3-large"></span><br>

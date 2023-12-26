@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Kiosk</title>
+    <title>Register Kiosk</title>
     <link rel="stylesheet" href="../../w3.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -64,22 +64,22 @@
 
 	<!-- Side Navigation -->
 	<nav class="w3-sidebar w3-bar-block w3-collapse  w3-card" style="z-index:3;width:250px; background:#e7c0ff;" id="mySidebar">
-		<a href="a-main.php" class="w3-bar-item w3-large" style="border-bottom: 2px solid #877272f0;"><img src="../../images/logo.png" class="w3-padding" style="width:216px;"></a>
+		<a href="dashboard.php" class="w3-bar-item w3-large" style="border-bottom: 2px solid #877272f0;"><img src="../../images/logo.png" class="w3-padding" style="width:216px;"></a>
 		<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
 
-		<a href="dashboard.html" class="w3-bar-item w3-button">
+		<a href="dashboard.php" class="w3-bar-item w3-button">
 			<i class="fa fa-fw fa-tachometer-alt w3-margin-right"></i> DASHBOARD</a>
 
 		<a href="#profile" class="w3-bar-item w3-button  ">
 			<i class="fa fa-fw fa-user w3-margin-right"></i> PROFILE</a>
 
-		<a href="manage_menu.html" class="w3-bar-item w3-button  ">
+		<a href="manage_menu.php" class="w3-bar-item w3-button  ">
 			<i class="fa fa-fw fa-book-reader w3-margin-right"></i> Manage Menu</a>
 
-		<a href="manage_order.html" class="w3-bar-item w3-button ">
+		<a href="manage_order.php" class="w3-bar-item w3-button ">
 			<i class="fa fa-fw fa-check w3-margin-right"></i> Manage Order</a>
 
-		<a href="manage_kiosk.html" class="w3-bar-item w3-button w3-pale-blue">
+		<a href="manage_kiosk.php" class="w3-bar-item w3-button w3-pale-blue">
 			<i class="fa fa-fw fa-store w3-margin-right"></i> Manage Kiosk</a>
 
 	</nav>
@@ -94,17 +94,18 @@
 
 
 
-		<div class="w3-white w3-bar w3-card ">
+		<!-- navbar -->
+        <div class="w3-white w3-bar w3-card ">
 
 
 			<i class="fa fa-bars w3-buttonx w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
 
 
 			<div class="w3-large w3-buttonx w3-bar-item w3-right w3-white w3-dropdown-hover">
-				<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> User <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
-				<div class="w3-dropdown-content w3-bar-block w3-card-4" style="min-width: 54px;">
-					<a href="profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i> Profile</a>
-					<a href="../../config/userlogout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Logout</a>
+				<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> Vendor <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
+				<div class="w3-dropdown-content w3-bar-block w3-card-4">
+					<a href="../../manageAccount/profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i> Profile</a>
+					<a href="../../config/userlogout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Signout</a>
 				</div>
 			</div>
 

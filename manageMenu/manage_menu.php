@@ -1,8 +1,13 @@
+<?php
+	session_start();
+	include("../config/database.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Manage Order</title>
+	<title>Manage Menu</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../w3.css">
@@ -42,22 +47,22 @@
 
 	<!-- Side Navigation -->
 	<nav class="w3-sidebar w3-bar-block w3-collapse  w3-card" style="z-index:3;width:250px; background:#e7c0ff;" id="mySidebar">
-		<a href="a-main.php" class="w3-bar-item w3-large" style="border-bottom: 2px solid #877272f0;"><img src="../../images/logo.png" class="w3-padding" style="width:216px;"></a>
+		<a href="dashboard.php" class="w3-bar-item w3-large" style="border-bottom: 2px solid #877272f0;"><img src="../../images/logo.png" class="w3-padding" style="width:216px;"></a>
 		<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
 
-		<a href="dashboard.html" class="w3-bar-item w3-button">
+		<a href="dashboard.php" class="w3-bar-item w3-button">
 			<i class="fa fa-fw fa-tachometer-alt w3-margin-right"></i> DASHBOARD</a>
 
 		<a href="#profile" class="w3-bar-item w3-button  ">
 			<i class="fa fa-fw fa-user w3-margin-right"></i> PROFILE</a>
 
-		<a href="manage_menu.html" class="w3-bar-item w3-button">
+		<a href="manage_menu.php" class="w3-bar-item w3-button  w3-pale-blue">
 			<i class="fa fa-fw fa-book-reader w3-margin-right"></i> Manage Menu</a>
 
-		<a href="manage_order.html" class="w3-bar-item w3-button w3-pale-blue">
+		<a href="manage_order.php" class="w3-bar-item w3-button ">
 			<i class="fa fa-fw fa-check w3-margin-right"></i> Manage Order</a>
 
-		<a href="manage_kiosk.html" class="w3-bar-item w3-button">
+		<a href="manage_kiosk.php" class="w3-bar-item w3-button">
 			<i class="fa fa-fw fa-store w3-margin-right"></i> Manage Kiosk</a>
 
 	</nav>
@@ -70,29 +75,31 @@
 	<!-- Page content -->
 	<div class="w3-main" style="margin-left:250px;">
 
-
-		<div class="w3-white w3-bar w3-card ">
-
-
-			<i class="fa fa-bars w3-buttonx w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
+	<!-- sidebar -->
+	<div class="w3-white w3-bar w3-card ">
 
 
-			<div class="w3-large w3-buttonx w3-bar-item w3-right w3-white w3-dropdown-hover">
-				<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> Vendor <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
-				<div class="w3-dropdown-content w3-bar-block w3-card-4">
-					<a href="a-profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i> Profile</a>
-					<a href="../../config/adminlogout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Signout</a>
-				</div>
+		<i class="fa fa-bars w3-buttonx w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
+
+
+		<div class="w3-large w3-buttonx w3-bar-item w3-right w3-white w3-dropdown-hover">
+			<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> Vendor <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
+			<div class="w3-dropdown-content w3-bar-block w3-card-4">
+				<a href="../../manageAccount/profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i> Profile</a>
+				<a href="../../config/userlogout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Signout</a>
 			</div>
-
 		</div>
+
+	</div>
 
 
 
 		<div class="w3-padding-16"></div>
 
         <div class="w3-row">
-            <div class="w3-container w3-content w3-xxlarge w3-cell" style="width: 90%;"> All Orders  </div>
+            <div class="w3-container w3-content w3-xxlarge w3-cell" style="width: 90%;"> All Menus  </div>
+            <div class="w3-container w3-padding-16 w3-cell" style="width: 5%;"><button class="w3-button w3-indigo w3-round-large"><i class="fas fa-qrcode"></i> Generate QR Code</button></div>
+            <div class="w3-container w3-padding-16 w3-cell" style="width: 5%;"><a href="register_menu.html" class="w3-button w3-teal w3-round-large"><i class="fas fa-plus"></i> Add Menu</a></div>
         </div>
 
 
@@ -109,9 +116,7 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>Customer Name</th>
-									<th>Menu</th>
-									<th>Quantity</th>
+									<th>Menu Name</th>
 									<th>Price</th>
 									<th>Status</th>
 									<th>Action</th>
@@ -120,14 +125,13 @@
 							
 								<tr>
 									<td>1</td>
-									<td>Ahmad Zubair</td>
-									<td>Nasi Goreng</td>
-									<td>1</td>
+									<td>menu 1</td>
 									<td>2.50</td>
-									<td><span class="w3-badge w3-green">Ready</span></td>
+									<td><span class="w3-badge w3-green">Available</span></td>
 									<td>
-										<a href="#" class="w3-button w3-green" style="border-radius: 20px;"><i class="fas fa-check"></i> Ready</a>
-										<a href="#" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-times"></i> Not Ready</a>
+										<a href="#" class="w3-button w3-green" style="border-radius: 20px;"><i class="fas fa-check"></i> Available</a>
+										<a href="#" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-times"></i> Not Available</a>
+										<a href="#" class="w3-button w3-deep-orange" style="border-radius: 20px;"><i class="fas fa-clipboard"></i> Edit</a>
 
 									</td>
 

@@ -4,6 +4,8 @@ include("../../config/database.php");
 $act = (isset($_POST['act'])) ? trim($_POST['act']) : '';
 
 $error = "";
+// Construct a URL for localhost
+$localhost = "http://" . $_SERVER['HTTP_HOST'];
 
 if ($act == "login") {
 	$email 		= (isset($_POST['email'])) ? trim($_POST['email']) : '';
@@ -21,16 +23,24 @@ if ($act == "login") {
 		$_SESSION["id_user"] 	= $data["id_user"];
 		$_SESSION["role"] 		= $data["role"];
 
-		if ($data["role"] == "user")
+		if($data["role"] == "user"){
+
 			header("Location:main.php");
-		else {
-			if ($data["status"] == "Approved")
+		}
+		else{
+			if($data["status"] == "Approved"){
+
 				header("Location:main.php");
+			}
 			else {
 				$error = "Pending Approval";
 				header("refresh:1;url=index.php");
 			}
 		}
+		if($data["role"] == "vendor"){
+			header("Location: $localhost/manageMenu/dashboard.php");
+		}
+
 	} else {
 		$error = "Invalid";
 		header("refresh:1;url=index.php");

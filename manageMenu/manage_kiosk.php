@@ -1,4 +1,26 @@
+<?php
+	session_start();
+	include("../config/database.php");
+	$act = (isset($_POST['act'])) ? trim($_POST['act']) : '';
+	if ($act == 'submit') {
+		$kiosk_name = (isset($_POST['kiosk_name'])) ? trim($_POST['kiosk_name']) : '';
+		$operating_hours = (isset($_POST['operating_hours'])) ? trim($_POST['operating_hours']) : '';
+		$kiosk_information = (isset($_POST['kiosk_information'])) ? trim($_POST['kiosk_information']) : '';
+		$status = (isset($_POST['status'])) ? trim($_POST['status']) : '';
+		$id_user = $_SESSION['id_user'];
+		$timestamp = date("Y-m-d H:i:s");
 
+		$query = "
+		INSERT INTO `kiosk` (`id_user`, `kiosk_name`, `operating_hours`, `kiosk_information`, `kiosk_img_dir`, `status`, `updated_at`)
+					VALUES ('$id_user', '$kiosk_name', '$operating_hours', '$kiosk_information', 'none', '$status', '$timestamp')
+		";
+
+		$result = mysqli_query($con, $query) or die("Error in query: " . $query . "<br />" . mysqli_error($con));
+		$id_kiosk = mysqli_insert_id($con);
+
+		$_SESSION['id_kiosk'] = $id_kiosk;
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,19 +89,19 @@
 		<a href="a-main.php" class="w3-bar-item w3-large" style="border-bottom: 2px solid #877272f0;"><img src="../../images/logo.png" class="w3-padding" style="width:216px;"></a>
 		<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
 
-		<a href="dashboard.html" class="w3-bar-item w3-button">
+		<a href="dashboard.php" class="w3-bar-item w3-button">
 			<i class="fa fa-fw fa-tachometer-alt w3-margin-right"></i> DASHBOARD</a>
 
 		<a href="#profile" class="w3-bar-item w3-button  ">
 			<i class="fa fa-fw fa-user w3-margin-right"></i> PROFILE</a>
 
-		<a href="manage_menu.html" class="w3-bar-item w3-button  ">
+		<a href="manage_menu.php" class="w3-bar-item w3-button  ">
 			<i class="fa fa-fw fa-book-reader w3-margin-right"></i> Manage Menu</a>
 
-		<a href="manage_order.html" class="w3-bar-item w3-button ">
+		<a href="manage_order.php" class="w3-bar-item w3-button ">
 			<i class="fa fa-fw fa-check w3-margin-right"></i> Manage Order</a>
 
-		<a href="manage_kiosk.html" class="w3-bar-item w3-button w3-pale-blue">
+		<a href="manage_kiosk.php" class="w3-bar-item w3-button w3-pale-blue">
 			<i class="fa fa-fw fa-store w3-margin-right"></i> Manage Kiosk</a>
 
 	</nav>
@@ -134,18 +156,18 @@
 							<div class="w3-section">
 								<label style="font-weight: bold; color: black;">Kiosk Name <span style="color: red;">*</span></label>
 
-								<input class="w3-input w3-border w3-round" type="text" name="name" value="" required>
+								<input class="w3-input w3-border w3-round" type="text" name="kiosk_name" value="" required>
 							</div>
 
 							<div class="w3-section">
 								<label style="font-weight: bold; color: black;">Enter Operating Hours <span style="color: red;">*</span></label>
 
-								<input class="w3-input w3-border w3-round" type="text" name="phone" value="" required>
+								<input class="w3-input w3-border w3-round" type="text" name="operating_hours" value="" required>
 							</div>
 
 							<div class="w3-section">
 								<label style="font-weight: bold; color: black;">Description <span style="color: red;">*</span></label>
-								<input class="w3-input w3-border w3-round" type="text" name="phone" value="" required>
+								<input class="w3-input w3-border w3-round" type="text" name="kiosk_information" value="" required>
 							</div>
 
 							<div class="w3-section">
@@ -157,7 +179,7 @@
 							<div class="w3-section">
 								<label style="font-weight: bold; color: black;">Kiosk Status <span style="color: red;">*</span></label>
 								<span class="w3-badge w3-large w3-green">Open</span>
-								<select class="w3-input w3-border w3-round" name="role" required>
+								<select class="w3-input w3-border w3-round" name="status" required>
 									<option value="open">Open</option>
 									<option value="close">Close</option>
 								</select>
@@ -166,6 +188,7 @@
 							<hr class="w3-clear">
 							<input type="hidden" name="act" value="edit">
 							<div style="text-align: center;">
+		  						<input type="hidden" name="act" value="submit">
 								<button type="submit" class="btn-grad w3-button w3-blue w3-margin-bottom w3-round">UPDATE</button>
 							</div>
 

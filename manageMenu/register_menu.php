@@ -1,4 +1,25 @@
+<?php
+	session_start();
+	include("../config/database.php");
+	$act = (isset($_POST['act'])) ? trim($_POST['act']) : '';
+	$id_kiosk = $_SESSION['id_kiosk'];
 
+	$localhost = "http://" . $_SERVER['HTTP_HOST'];
+
+	if ($act == 'submit') {
+		$menu_name = (isset($_POST['menu_name'])) ? trim($_POST['menu_name']) : '';
+		$price = (isset($_POST['price'])) ? trim($_POST['price']) : '';
+		$status = (isset($_POST['status'])) ? trim($_POST['status']) : '';
+		$timestamp = date("Y-m-d H:i:s");
+		$query = "
+			INSERT INTO `menu` (`id_kiosk`, `menu_name`, `price`, `status`, `image_dir`, `updated_at`)
+						VALUES ('$id_kiosk', '$menu_name', '$price', '$status', 'none', '$timestamp')
+		";
+
+		$result = mysqli_query($con, $query) or die("Error in query: " . $query . "<br />" . mysqli_error($con));
+		header("Location: $localhost/manageMenu/manage_menu.php");
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,13 +156,13 @@
 							<div class="w3-section">
 								<label style="font-weight: bold; color: black;">Menu Name <span style="color: red;">*</span></label>
 
-								<input class="w3-input w3-border w3-round" type="text" name="name" value="" required>
+								<input class="w3-input w3-border w3-round" type="text" name="menu_name" value="" required>
 							</div>
 
 							<div class="w3-section">
 								<label style="font-weight: bold; color: black;">Price <span style="color: red;">*</span></label>
 
-								<input class="w3-input w3-border w3-round" type="number" name="phone" value="" required>
+								<input class="w3-input w3-border w3-round" type="number" step="0.01" name="price" value="" required>
 							</div>
 
 							<div class="w3-section">
@@ -150,9 +171,19 @@
 								<input type="file" name="image">
 							</div>
 
+							<div class="w3-section">
+								<label style="font-weight: bold; color: black;">Kiosk Status <span style="color: red;">*</span></label>
+								<span class="w3-badge w3-large w3-green">Open</span>
+								<select class="w3-input w3-border w3-round" name="status" required>
+									<option value="available">Available</option>
+									<option value="not available">Not Available</option>
+								</select>
+							</div>
+
 							<hr class="w3-clear">
-							<input type="hidden" name="act" value="edit">
+							<input type="hidden" name="act" value="submit">
 							<div style="text-align: center;">
+							<input type="hidden" name="act" value="submit">
 								<button type="submit" class="btn-grad w3-button w3-blue w3-margin-bottom w3-round">ADD MENU</button>
 							</div>
 

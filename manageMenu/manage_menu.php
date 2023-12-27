@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include("../config/database.php");
+	$id_kiosk = $_SESSION['id_kiosk'];
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +100,7 @@
         <div class="w3-row">
             <div class="w3-container w3-content w3-xxlarge w3-cell" style="width: 90%;"> All Menus  </div>
             <div class="w3-container w3-padding-16 w3-cell" style="width: 5%;"><button class="w3-button w3-indigo w3-round-large"><i class="fas fa-qrcode"></i> Generate QR Code</button></div>
-            <div class="w3-container w3-padding-16 w3-cell" style="width: 5%;"><a href="register_menu.html" class="w3-button w3-teal w3-round-large"><i class="fas fa-plus"></i> Add Menu</a></div>
+            <div class="w3-container w3-padding-16 w3-cell" style="width: 5%;"><a href="register_menu.php" class="w3-button w3-teal w3-round-large"><i class="fas fa-plus"></i> Add Menu</a></div>
         </div>
 
 
@@ -122,12 +123,26 @@
 									<th>Action</th>
 								</tr>
 							</thead>
-							
+							<?php 
+								$bil = 0;
+								$query_list = "SELECT * FROM `menu` WHERE `id_kiosk` = '$id_kiosk'";
+								$result = mysqli_query($con, $query_list);
+								while ($data = mysqli_fetch_array($result)) {
+									$bil++;
+							?>
 								<tr>
-									<td>1</td>
-									<td>menu 1</td>
-									<td>2.50</td>
-									<td><span class="w3-badge w3-green">Available</span></td>
+									<td><?php echo $bil;?></td>
+									<td><?php echo $data["menu_name"];?></td>
+									<td><?php echo $data["price"];?></td>
+									<td>
+										<?php if($data["status"] == 'available') {?>
+										<span class="w3-badge w3-green">Available</span></td>
+										<?php } ?>
+										<?php if($data["status"] == 'not available') {?>
+											<span class="w3-badge w3-red">Not Available</span></td>
+										<?php } ?>
+
+
 									<td>
 										<a href="#" class="w3-button w3-green" style="border-radius: 20px;"><i class="fas fa-check"></i> Available</a>
 										<a href="#" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-times"></i> Not Available</a>
@@ -136,6 +151,7 @@
 									</td>
 
 								</tr>
+							<?php } ?>
 							
 						</table>
 					</div>

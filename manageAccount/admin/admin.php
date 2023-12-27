@@ -35,6 +35,7 @@ if ($act == "login") {
 <html>
 <title>FKKIOSK</title>
 <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/images/icon.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../../w3.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">

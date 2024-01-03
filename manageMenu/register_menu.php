@@ -83,24 +83,25 @@
 <body class="w3-biru">
 
 
+	
 	<!-- Side Navigation -->
 	<nav class="w3-sidebar w3-bar-block w3-collapse  w3-card" style="z-index:3;width:250px; background:#e7c0ff;" id="mySidebar">
 		<a href="dashboard.php" class="w3-bar-item w3-large" style="border-bottom: 2px solid #877272f0;"><img src="../../images/logo.png" class="w3-padding" style="width:216px;"></a>
 		<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
 
-		<a href="dashboard.php" class="w3-bar-item w3-button">
+		<a href="dashboard.php" class="w3-bar-item w3-button w3-pale-blue">
 			<i class="fa fa-fw fa-tachometer-alt w3-margin-right"></i> DASHBOARD</a>
 
-		<a href="#profile" class="w3-bar-item w3-button  ">
+		<a href="profile.php" class="w3-bar-item w3-button  ">
 			<i class="fa fa-fw fa-user w3-margin-right"></i> PROFILE</a>
 
-		<a href="manage_menu.php" class="w3-bar-item w3-button  w3-pale-blue">
+		<a href="manage_menu.php" class="w3-bar-item w3-button  ">
 			<i class="fa fa-fw fa-book-reader w3-margin-right"></i> Manage Menu</a>
 
 		<a href="manage_order.php" class="w3-bar-item w3-button ">
 			<i class="fa fa-fw fa-check w3-margin-right"></i> Manage Order</a>
 
-		<a href="manage_kiosk.php" class="w3-bar-item w3-button">
+		<a href="manage_kiosk.php" class="w3-bar-item w3-button ">
 			<i class="fa fa-fw fa-store w3-margin-right"></i> Manage Kiosk</a>
 
 	</nav>

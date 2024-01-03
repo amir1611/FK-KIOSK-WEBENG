@@ -65,7 +65,7 @@
 		<a href="dashboard.php" class="w3-bar-item w3-button w3-pale-blue">
 			<i class="fa fa-fw fa-tachometer-alt w3-margin-right"></i> DASHBOARD</a>
 
-		<a href="#profile" class="w3-bar-item w3-button  ">
+		<a href="profile.php" class="w3-bar-item w3-button  ">
 			<i class="fa fa-fw fa-user w3-margin-right"></i> PROFILE</a>
 
 		<a href="manage_menu.php" class="w3-bar-item w3-button  ">

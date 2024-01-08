@@ -23,6 +23,7 @@ if($act == "login")
 		$_SESSION["email"] 		= $email;
 		$_SESSION["password"] 	= $password;	
 		$_SESSION["id_user"] 	= $data["id_user"];
+		$id_user = $data["id_user"];
 		$_SESSION["role"] 		= $data["role"];
 
 		if($data["role"] == "user"){
@@ -40,6 +41,12 @@ if($act == "login")
 			}
 		}
 		if($data["role"] == "vendor"){
+
+			$vendor_sql = " SELECT * FROM `kiosk` WHERE `id_user` = '$id_user' ";
+			$result = mysqli_query($con, $vendor_sql);
+			$data_vendor	= mysqli_fetch_array($result);
+
+			$_SESSION['id_kiosk'] = $data_vendor['id_kiosk'];
 			header("Location: $localhost/manageMenu/dashboard.php");
 		}
 

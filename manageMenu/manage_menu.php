@@ -2,6 +2,7 @@
 	session_start();
 	include("../config/database.php");
 	$id_kiosk = $_SESSION['id_kiosk'];
+	$localhost = "http://" . $_SERVER['HTTP_HOST'];
 
 	$act = (isset($_REQUEST['act'])) ? trim($_REQUEST['act']) : '';
 	$id_menu = (isset($_REQUEST['id_menu'])) ? trim($_REQUEST['id_menu']) : '';
@@ -56,6 +57,10 @@
 
 		.w3-biru {
 			background-color: #f6f9ff;
+		}
+
+		#qrcode {
+			margin-left: 3.5em;
 		}
 	</style>
 </head>
@@ -122,13 +127,14 @@
         </div>
 
 		<div id="generate-qr" class="w3-modal">
-			<div class="w3-modal-content w3-animate-top w3-card-4" style="width: 40%;">
+			<div class="w3-modal-content w3-animate-top w3-card-4" style="width: 25%;">
 				<header class="w3-container w3-teal">
 				<span onclick="document.getElementById('generate-qr').style.display='none'" class="w3-button w3-display-topright">&times;</span>
 					<h2>Qr Code</h2>
 				</header>
-				<div class="w3-container">
-					<p>QR CODE</p>
+				<div class="w3-container w3-padding-32">
+					<input type="hidden" value="<?php echo $localhost;?>/manageMenu/manage_menu.php?id_menu=<?php echo $id_kiosk?>" id="menu_url">
+					<div id="qrcode"></div>
 				</div>
 			</div>
 		</div>
@@ -176,6 +182,7 @@
 										<a href="?act=available&id_menu=<?php echo $data['id_menu'];?>" class="w3-button w3-green" style="border-radius: 20px;"><i class="fas fa-check"></i> Available</a>
 										<a href="?act=unavailable&id_menu=<?php echo $data['id_menu'];?>" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-times"></i> Unavailable</a>
 										<a href="#" class="w3-button w3-deep-orange" style="border-radius: 20px;"><i class="fas fa-clipboard"></i> Edit</a>
+										<a href="#" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-trash"></i> Delete</a>
 
 									</td>
 
@@ -206,10 +213,10 @@
 
 	</div>
 
-
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="../js/scripts.js"></script>
+	<script src="../js/qrcode.min.js"></script>
+	
 	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 	<!--<script src="assets/demo/datatables-demo.js"></script>-->
@@ -222,6 +229,17 @@
 				paging: true,
 
 				searching: true
+			});
+
+			let menu_url = $('#menu_url').val();
+
+			var qrcode = new QRCode("qrcode", {
+				text: menu_url,
+				width: 228,
+				height: 228,
+				colorDark : "#000000",
+				colorLight : "#ffffff",
+				correctLevel : QRCode.CorrectLevel.H
 			});
 
 
@@ -254,6 +272,9 @@
 					x.previousElementSibling.className.replace(" w3-red", "");
 			}
 		}
+
+		
+
 	</script>
 
 </body>

@@ -1,6 +1,26 @@
+<?php
+    session_start();
+    include("../config/database.php");
+    if (isset($_GET['id_kiosk'])) {
+        $id_kiosk = $_GET['id_kiosk'];
+
+        // echo $id_kiosk;
+
+        $kiosk_sql = "SELECT * FROM `kiosk` WHERE `id_kiosk` = '$id_kiosk'";
+        $result = mysqli_query($con, $kiosk_sql);
+
+        $data	= mysqli_fetch_array($result);
+	    $valid = mysqli_num_rows($result);
+
+        if ($valid > 0) {
+            $kiosk_name = $data['kiosk_name'];
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html>
-<title>Menu Page</title>
+<title>Menu Page of <?php echo $kiosk_name;?></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../../w3.css">
@@ -71,12 +91,12 @@
         <!-- navbar -->
         <div class="w3-white w3-bar w3-card ">
 
-
-			<i class="fa fa-bars w3-buttonx w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
-
+            <div class="w3-large w3-buttonx w3-bar-item w3-left">
+                <a href="#" class="w3-bar-item w3-button"><?php echo $kiosk_name;?></a>
+            </div>
 
 			<div class="w3-large w3-buttonx w3-bar-item w3-right w3-white w3-dropdown-hover">
-				<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> Vendor <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
+				<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> User <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
 				<div class="w3-dropdown-content w3-bar-block w3-card-4">
 					<a href="../../manageAccount/profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i> Profile</a>
 					<a href="../../config/userlogout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Signout</a>
@@ -90,47 +110,34 @@
         </div>
 
         <div class="w3-container w3-center">
+
+            <?php
+                $menu_sql = "SELECT * FROM `menu` WHERE `id_kiosk` = '$id_kiosk' ";
+                $result = mysqli_query($con, $menu_sql);
+                while ($data = mysqli_fetch_array($result)) {
+                    # code...
+                
+            ?>
             
             <div class="w3-third w3-container w3-padding-16" id="contact">
                 <div class="w3-white w3-card-4 w3-r" style="max-width:400px;">
                     <img src="./images/nasi_goreng_kampung.jpeg" style="width: 100%;" alt="nasi_goreng_kampung">
                     <div class="w3-padding-16 w3-container w3-center">
-                        <p>Nasi Goreng Kampung</p>
-                        <p>Price: 5.70 MYR</p>
+                        <p><?php echo $data['menu_name']; ?></p>
+                        <p><?php echo $data['price']; ?></p>
+                        <p>
+                            <?php if($data["status"] == 'available') {?>
+                            <span class="w3-badge w3-green">Available</span></td>
+                            <?php } ?>
+                            <?php if($data["status"] == 'not available') {?>
+                                <span class="w3-badge w3-red">Not Available</span></td>
+                            <?php } ?>
+                        </p>
                         <a href="#" class="w3-button w3-green">Add To Cart</a>
                     </div>
                 </div>
             </div>
-            <div class="w3-third w3-container w3-padding-16" id="contact">
-                <div class="w3-white w3-card-4 w3-r" style="max-width:400px;">
-                    <img src="./images/nasi_goreng_kampung.jpeg" style="width: 100%;" alt="nasi_goreng_kampung">
-                    <div class="w3-padding-16 w3-container w3-center">
-                        <p>Nasi Goreng Kampung</p>
-                        <p>Price: 5.70 MYR</p>
-                        <a href="#" class="w3-button w3-green">Add To Cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="w3-third w3-container w3-padding-16" id="contact">
-                <div class="w3-white w3-card-4 w3-r" style="max-width:400px;">
-                    <img src="./images/nasi_goreng_kampung.jpeg" style="width: 100%;" alt="nasi_goreng_kampung">
-                    <div class="w3-padding-16 w3-container w3-center">
-                        <p>Nasi Goreng Kampung</p>
-                        <p>Price: 5.70 MYR</p>
-                        <a href="#" class="w3-button w3-green">Add To Cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="w3-third w3-container w3-padding-16" id="contact">
-                <div class="w3-white w3-card-4 w3-r" style="max-width:400px;">
-                    <img src="./images/nasi_goreng_kampung.jpeg" style="width: 100%;" alt="nasi_goreng_kampung">
-                    <div class="w3-padding-16 w3-container w3-center">
-                        <p>Nasi Goreng Kampung</p>
-                        <p>Price: 5.70 MYR</p>
-                        <a href="#" class="w3-button w3-green">Add To Cart</a>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
 
         <footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 238px;">

@@ -129,8 +129,8 @@
                             <?php if($data["status"] == 'available') {?>
                             <span class="w3-badge w3-green">Available</span></td>
                             <?php } ?>
-                            <?php if($data["status"] == 'not available') {?>
-                                <span class="w3-badge w3-red">Not Available</span></td>
+                            <?php if($data["status"] == 'unavailable') {?>
+                                <span class="w3-badge w3-red">Unavailable</span></td>
                             <?php } ?>
                         </p>
                         <a href="#" class="w3-button w3-green">Add To Cart</a>

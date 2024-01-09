@@ -2,6 +2,23 @@
 	session_start();
 	include("../config/database.php");
 	$id_kiosk = $_SESSION['id_kiosk'];
+
+	$act = (isset($_REQUEST['act'])) ? trim($_REQUEST['act']) : '';
+	$id_menu = (isset($_REQUEST['id_menu'])) ? trim($_REQUEST['id_menu']) : '';
+
+	if ($act == "available") {
+		$SQL_update = " UPDATE `menu` SET `status` = 'available' WHERE `id_menu` = $id_menu";
+		$result = mysqli_query($con, $SQL_update);
+		$success = "Successfully Updated";
+		print "<script>self.location='manage_menu.php';</script>";
+	}
+	
+	if ($act == "unavailable") {
+		$SQL_update = " UPDATE `menu` SET `status` = 'unavailable' WHERE `id_menu` = $id_menu";
+		$result = mysqli_query($con, $SQL_update);
+		$success = "Successfully Updated";
+		print "<script>self.location='manage_menu.php';</script>";
+	}
 ?>
 
 <!DOCTYPE html>
@@ -100,10 +117,21 @@
 
         <div class="w3-row">
             <div class="w3-container w3-content w3-xxlarge w3-cell" style="width: 90%;"> All Menus  </div>
-            <div class="w3-container w3-padding-16 w3-cell" style="width: 5%;"><button class="w3-button w3-indigo w3-round-large"><i class="fas fa-qrcode"></i> Generate QR Code</button></div>
+            <div class="w3-container w3-padding-16 w3-cell" style="width: 5%;"><button onclick="document.getElementById('generate-qr').style.display='block'" class="w3-button w3-indigo w3-round-large"><i class="fas fa-qrcode"></i> Generate QR Code</button></div>
             <div class="w3-container w3-padding-16 w3-cell" style="width: 5%;"><a href="register_menu.php" class="w3-button w3-teal w3-round-large"><i class="fas fa-plus"></i> Add Menu</a></div>
         </div>
 
+		<div id="generate-qr" class="w3-modal">
+			<div class="w3-modal-content w3-animate-top w3-card-4" style="width: 40%;">
+				<header class="w3-container w3-teal">
+				<span onclick="document.getElementById('generate-qr').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+					<h2>Qr Code</h2>
+				</header>
+				<div class="w3-container">
+					<p>QR CODE</p>
+				</div>
+			</div>
+		</div>
 
 
 		<div class="w3-container">
@@ -139,14 +167,14 @@
 										<?php if($data["status"] == 'available') {?>
 										<span class="w3-badge w3-green">Available</span></td>
 										<?php } ?>
-										<?php if($data["status"] == 'not available') {?>
-											<span class="w3-badge w3-red">Not Available</span></td>
+										<?php if($data["status"] == 'unavailable') {?>
+											<span class="w3-badge w3-red">Unavailable</span></td>
 										<?php } ?>
 
 
 									<td>
-										<a href="#" class="w3-button w3-green" style="border-radius: 20px;"><i class="fas fa-check"></i> Available</a>
-										<a href="#" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-times"></i> Not Available</a>
+										<a href="?act=available&id_menu=<?php echo $data['id_menu'];?>" class="w3-button w3-green" style="border-radius: 20px;"><i class="fas fa-check"></i> Available</a>
+										<a href="?act=unavailable&id_menu=<?php echo $data['id_menu'];?>" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-times"></i> Unavailable</a>
 										<a href="#" class="w3-button w3-deep-orange" style="border-radius: 20px;"><i class="fas fa-clipboard"></i> Edit</a>
 
 									</td>

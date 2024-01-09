@@ -177,7 +177,7 @@
 								<span class="w3-badge w3-large w3-green">Open</span>
 								<select class="w3-input w3-border w3-round" name="status" required>
 									<option value="available">Available</option>
-									<option value="not available">Not Available</option>
+									<option value="unavailable">Unavailable</option>
 								</select>
 							</div>
 

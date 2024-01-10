@@ -1,3 +1,7 @@
+<?php
+	include("./utils/navigation.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,20 +49,16 @@
 		<a href="dashboard.php" class="w3-bar-item w3-large" style="border-bottom: 2px solid #877272f0;"><img src="../../images/logo.png" class="w3-padding" style="width:216px;"></a>
 		<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
 
-		<a href="dashboard.php" class="w3-bar-item w3-button w3-pale-blue">
-			<i class="fa fa-fw fa-tachometer-alt w3-margin-right"></i> DASHBOARD</a>
+		<?php foreach ($menu_url as $menu) {?>
+			<?php if ($menu['name'] == 'Manage Order') {?>
+				<a href="<?php echo $menu['link']; ?>" class="w3-bar-item w3-button w3-pale-blue">
+					<i class="<?php echo $menu['icon'];?>"></i> <?php echo $menu['name'];?></a>
+			<?php } else { ?>
 
-		<a href="profile.php" class="w3-bar-item w3-button  ">
-			<i class="fa fa-fw fa-user w3-margin-right"></i> PROFILE</a>
-
-		<a href="manage_menu.php" class="w3-bar-item w3-button  ">
-			<i class="fa fa-fw fa-book-reader w3-margin-right"></i> Manage Menu</a>
-
-		<a href="manage_order.php" class="w3-bar-item w3-button ">
-			<i class="fa fa-fw fa-check w3-margin-right"></i> Manage Order</a>
-
-		<a href="manage_kiosk.php" class="w3-bar-item w3-button ">
-			<i class="fa fa-fw fa-store w3-margin-right"></i> Manage Kiosk</a>
+				<a href="<?php echo $menu['link']; ?>" class="w3-bar-item w3-button  ">
+					<i class="<?php echo $menu['icon'];?>"></i> <?php echo $menu['name'];?></a>
+			<?php } ?>
+		<?php } ?>
 
 	</nav>
 

@@ -128,7 +128,7 @@
 					<h2>Qr Code</h2>
 				</header>
 				<div class="w3-container w3-padding-32">
-					<input type="hidden" value="<?php echo $localhost;?>/manageMenu/manage_menu.php?id_menu=<?php echo $id_kiosk?>" id="menu_url">
+					<input type="hidden" value="<?php echo $localhost;?>/manageMenu/manage_menu.php?id_kiosk=<?php echo $id_kiosk?>" id="menu_url">
 					<div id="qrcode"></div>
 				</div>
 			</div>

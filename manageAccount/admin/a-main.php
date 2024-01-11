@@ -194,7 +194,7 @@ $tot_approved	= numRows($con, "SELECT * FROM `user` WHERE `role` = 'vendor' AND 
 
 
 
-		<footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 472px;">
+		<footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 268px;">
 			<p>&copy; 2023 FK KIOSK. All rights reserved.</p>
 		</footer>
 

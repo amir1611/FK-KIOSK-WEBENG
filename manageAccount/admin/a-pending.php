@@ -183,7 +183,7 @@ if ($act == "Reject") {
 		<!-- container end -->
 
 
-		<footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 475px;">
+		<footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 495px;">
 			<p>&copy; 2023 FK KIOSK. All rights reserved.</p>
 		</footer>
 

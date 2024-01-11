@@ -167,7 +167,7 @@ background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
 					</form>
 
 					<div class="w3-center w3-padding">Don’t have an account? <a href="register.php" class="w3-text-blue">Sign Up</a></div>
-					<div class="w3-center w3-padding">Login as Guest? <a href="main.php" class="w3-text-blue">Guest Login</a></div>
+					<div class="w3-center w3-padding">Login as Guest? <a href="guest_main.php" class="w3-text-blue">Guest Login</a></div>
 				</div>
 
 

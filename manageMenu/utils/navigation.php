@@ -9,7 +9,7 @@ $menu_url = [
     ],
     [
         'name' => 'Profile',
-        'link' => '#',
+        'link' => '../manageAccount/user/profile.php',
         'icon' => 'fa fa-fw fa-user w3-margin-right'
     ],
     [

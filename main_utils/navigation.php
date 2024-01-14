@@ -29,5 +29,13 @@
                 ],
             ];
         }
+
+        if ($role == 'user') {
+            # array utk user
+        }
+
+        if ($role == 'admin' ) {
+            # array utk admin
+        }
     }
 ?>

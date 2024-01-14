@@ -112,7 +112,7 @@
         <div class="w3-container w3-center">
 
             <?php
-                $menu_sql = "SELECT * FROM `menu` WHERE `id_kiosk` = '$id_kiosk' ";
+                $menu_sql = "SELECT * FROM `menu` WHERE `id_kiosk` = '$id_kiosk' AND `status` = 'available' ";
                 $result = mysqli_query($con, $menu_sql);
                 while ($data = mysqli_fetch_array($result)) {
                     # code...

@@ -21,6 +21,12 @@
 		$success = "Successfully Updated";
 		print "<script>self.location='manage_menu.php';</script>";
 	}
+
+	if ($act == 'delete') {
+		$query = "DELETE FROM `menu` WHERE id_menu = $id_menu";
+		$result = mysqli_query($con, $query);
+		print "<script>self.location='manage_menu.php';</script>";
+	}
 ?>
 
 <!DOCTYPE html>
@@ -176,8 +182,8 @@
 									<td>
 										<a href="?act=available&id_menu=<?php echo $data['id_menu'];?>" class="w3-button w3-green" style="border-radius: 20px;"><i class="fas fa-check"></i> Available</a>
 										<a href="?act=unavailable&id_menu=<?php echo $data['id_menu'];?>" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-times"></i> Unavailable</a>
-										<a href="#" class="w3-button w3-deep-orange" style="border-radius: 20px;"><i class="fas fa-clipboard"></i> Edit</a>
-										<a href="#" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-trash"></i> Delete</a>
+										<a href="edit_menu.php?id_menu=<?php echo $data['id_menu']; ?>" class="w3-button w3-deep-orange" style="border-radius: 20px;"><i class="fas fa-clipboard"></i> Edit</a>
+										<a href="?act=delete&id_menu=<?php echo $data['id_menu'];?>" class="w3-button w3-red" style="border-radius: 20px;"><i class="fas fa-trash"></i> Delete</a>
 
 									</td>
 

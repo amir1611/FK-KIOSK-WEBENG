@@ -1,4 +1,4 @@
-![FK-KIOSK MANAGEMENT SYSTEM](https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaD2SoAVS6jLEdKNDbW7IyH9iCu5d4P0A4oVg4gqeu04ul4XGycxMm2Cbcp2xTb6j-KpeQJawyJL7LzbDefIxRy-rWFi9A=w1920-h911)
+![FK-KIOSK MANAGEMENT SYSTEM](https://drive.google.com/file/d/1rv52Sqwg_5wQG2IFieLz8_O_XKoV1opU/view?usp=sharing)
 # FK-KIOSK MANAGEMENT SYSTEM
 ONLINE KIOSK MANAGEMENT SYSTEM FOR FACULTY OF COMPUTING, UMPSA
 

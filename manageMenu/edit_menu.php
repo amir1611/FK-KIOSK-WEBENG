@@ -1,54 +1,40 @@
-<?PHP
-session_start();
+<?php
+	session_start();
+	include("../config/database.php");
+	include("./utils/navigation.php");
+	$act = (isset($_POST['act'])) ? trim($_POST['act']) : '';
+	$id_kiosk = $_SESSION['id_kiosk'];
 
-include("../config/database.php");
-if (!verifyUser($con)) {
-	header("Location: index.php");
-	return false;
-}
-?>
-<?PHP
-$id_user	= $_SESSION["id_user"];
-$act 		= (isset($_REQUEST['act'])) ? trim($_REQUEST['act']) : '';
+	$localhost = "http://" . $_SERVER['HTTP_HOST'];
 
-$name 		= (isset($_POST['name'])) ? trim($_POST['name']) : '';
-$email		= (isset($_POST['email'])) ? trim($_POST['email']) : '';
-$phone		= (isset($_POST['phone'])) ? trim($_POST['phone']) : '';
-$password	= (isset($_POST['password'])) ? trim($_POST['password']) : '';
+	$id_menu = (isset($_REQUEST['id_menu'])) ? trim($_REQUEST['id_menu']) : '';
 
-$success = "";
-
-if ($act == "edit") {
-	$SQL_update = " 
-	UPDATE
-		`user`
-	SET
-		`name` = '$name',
-		`email` = '$email',
-		`phone` = '$phone',
-		`password` = '$password'
-	WHERE
-		`id_user`='$id_user' 
+	if ($act == 'submit') {
+		$menu_name = (isset($_POST['menu_name'])) ? trim($_POST['menu_name']) : '';
+		$price = (isset($_POST['price'])) ? trim($_POST['price']) : '';
+		$status = (isset($_POST['status'])) ? trim($_POST['status']) : '';
+		$timestamp = date("Y-m-d H:i:s");
+		$query = "
+			UPDATE `menu` SET `menu_name` = '$menu_name', `price` = '$price', `status` = '$status', `image_dir` = 'none', `updated_at` = '$timestamp'
+			WHERE id_menu = $id_menu 			
 		";
 
-	$result = mysqli_query($con, $SQL_update);
+		$result = mysqli_query($con, $query) or die("Error in query: " . $query . "<br />" . mysqli_error($con));
+		header("Location: $localhost/manageMenu/manage_menu.php");
+	}
 
-	$success = "Successfully Update";
-	//print "<script>self.location='a-profile.php';</script>";
-}
-
-$SQL_list = "SELECT * FROM `user` WHERE `id_user` = '$id_user' ";
-$result = mysqli_query($con, $SQL_list);
-$data	= mysqli_fetch_array($result);
+	// get menu data
+	$query_list = "SELECT * FROM `menu` WHERE `id_menu` = '$id_menu'";
+	$result = mysqli_query($con, $query_list);
+	$data = mysqli_fetch_array($result)	
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<title>FKKIOSK</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../../w3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Menu</title>
+    <link rel="stylesheet" href="../../w3.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -104,12 +90,6 @@ $data	= mysqli_fetch_array($result);
 
 <body class="w3-biru">
 
-	<!--- Toast Notification -->
-	<?PHP
-	if ($success) {
-		Notify("success", $success, "profile.php");
-	}
-	?>
 
 	
 	<!-- Side Navigation -->
@@ -117,20 +97,16 @@ $data	= mysqli_fetch_array($result);
 		<a href="dashboard.php" class="w3-bar-item w3-large" style="border-bottom: 2px solid #877272f0;"><img src="../../images/logo.png" class="w3-padding" style="width:216px;"></a>
 		<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
 
-		<a href="dashboard.php" class="w3-bar-item w3-button w3-pale-blue">
-			<i class="fa fa-fw fa-tachometer-alt w3-margin-right"></i> DASHBOARD</a>
+		<?php foreach ($menu_url as $menu) {?>
+			<?php if ($menu['name'] == 'Manage Menu') {?>
+				<a href="<?php echo $menu['link']; ?>" class="w3-bar-item w3-button w3-pale-blue">
+					<i class="<?php echo $menu['icon'];?>"></i> <?php echo $menu['name'];?></a>
+			<?php } else { ?>
 
-		<a href="profile.php" class="w3-bar-item w3-button  ">
-			<i class="fa fa-fw fa-user w3-margin-right"></i> PROFILE</a>
-
-		<a href="manage_menu.php" class="w3-bar-item w3-button  ">
-			<i class="fa fa-fw fa-book-reader w3-margin-right"></i> Manage Menu</a>
-
-		<a href="manage_order.php" class="w3-bar-item w3-button ">
-			<i class="fa fa-fw fa-check w3-margin-right"></i> Manage Order</a>
-
-		<a href="manage_kiosk.php" class="w3-bar-item w3-button ">
-			<i class="fa fa-fw fa-store w3-margin-right"></i> Manage Kiosk</a>
+				<a href="<?php echo $menu['link']; ?>" class="w3-bar-item w3-button  ">
+					<i class="<?php echo $menu['icon'];?>"></i> <?php echo $menu['name'];?></a>
+			<?php } ?>
+		<?php } ?>
 
 	</nav>
 
@@ -144,23 +120,28 @@ $data	= mysqli_fetch_array($result);
 
 
 
-		<div class="w3-white w3-bar w3-card ">
+		<!-- navbar -->
+        <div class="w3-white w3-bar w3-card ">
 
 
 			<i class="fa fa-bars w3-buttonx w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
 
 
 			<div class="w3-large w3-buttonx w3-bar-item w3-right w3-white w3-dropdown-hover">
-				<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> User <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
-				<div class="w3-dropdown-content w3-bar-block w3-card-4" style="min-width: 54px;">
-					<a href="profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i> Profile</a>
-					<a href="../../config/userlogout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Logout</a>
+				<button class="w3-button"><i class="fa fa-fw fa-user-circle"></i> Vendor <i class="fa fa-fw fa-chevron-down w3-small"></i></button>
+				<div class="w3-dropdown-content w3-bar-block w3-card-4">
+					<a href="../../manageAccount/profile.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-user-cog "></i> Profile</a>
+					<a href="../../config/userlogout.php" class="w3-bar-item w3-button"><i class="fa fa-fw fa-sign-out-alt "></i> Signout</a>
 				</div>
 			</div>
 
 		</div>
 
+
+
 		<div class="w3-padding-32"></div>
+
+
 
 		<div class="w3-container">
 
@@ -172,39 +153,43 @@ $data	= mysqli_fetch_array($result);
 					<form action="" method="post">
 						<div class="w3-padding">
 							<div style="text-align: center;">
-								<b class="w3-large">Profile</b>
+								<b class="w3-large">Edit Menu Details</b>
 							</div>
 
 							<hr>
 
 							<div class="w3-section">
-								<label style="font-weight: bold; color: black;">Full Name <span style="color: red;">*</span></label>
+								<label style="font-weight: bold; color: black;">Menu Name <span style="color: red;">*</span></label>
 
-								<input class="w3-input w3-border w3-round" type="text" name="name" value="<?PHP echo $data["name"]; ?>" required>
+								<input class="w3-input w3-border w3-round" type="text" name="menu_name" placeholder="<?php echo $data['menu_name'];?>" required>
 							</div>
 
 							<div class="w3-section">
-								<label style="font-weight: bold; color: black;">Contact <span style="color: red;">*</span></label>
+								<label style="font-weight: bold; color: black;">Price <span style="color: red;">*</span></label>
 
-								<input class="w3-input w3-border w3-round" type="text" name="phone" value="<?PHP echo $data["phone"]; ?>" required>
+								<input class="w3-input w3-border w3-round" type="number" step="0.01" name="price" placeholder="<?php echo $data['price'];?>" required>
 							</div>
 
 							<div class="w3-section">
-								<label style="font-weight: bold; color: black;">Email <span style="color: red;">*</span></label>
+								<label style="font-weight: bold; color: black;">Upload Image <span style="color: red;">*</span></label>
 
-								<input class="w3-input w3-border w3-round" type="email" name="email" value="<?PHP echo $data["email"]; ?>" required>
+								<input type="file" name="image">
 							</div>
 
 							<div class="w3-section">
-								<label style="font-weight: bold; color: black;">Password <span style="color: red;">*</span></label>
-
-								<input class="w3-input w3-border w3-round" type="password" name="password" value="<?PHP echo $data["password"]; ?>" required>
+								<label style="font-weight: bold; color: black;">Kiosk Status <span style="color: red;">*</span></label>
+								<span class="w3-badge w3-large w3-green">Open</span>
+								<select class="w3-input w3-border w3-round" name="status" required>
+									<option value="available">Available</option>
+									<option value="unavailable">Unavailable</option>
+								</select>
 							</div>
 
 							<hr class="w3-clear">
-							<input type="hidden" name="act" value="edit">
+							<input type="hidden" name="act" value="submit">
 							<div style="text-align: center;">
-								<button type="submit" class="btn-grad w3-button w3-blue w3-margin-bottom w3-round">UPDATE</button>
+							<input type="hidden" name="act" value="submit">
+								<button type="submit" class="btn-grad w3-button w3-blue w3-margin-bottom w3-round">UPDATE MENU</button>
 							</div>
 
 						</div>
@@ -224,13 +209,14 @@ $data	= mysqli_fetch_array($result);
 		<!-- container end -->
 
 
-		<footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 209px;">
+
+
+		<footer class="w3-container w3-padding-1 w3-center" style="background: white;margin-top: 625px;">
 			<p>&copy; 2023 FK KIOSK. All rights reserved.</p>
 		</footer>
 
 
 	</div>
-
 
 	<script>
 		var openInbox = document.getElementById("myBtn");
@@ -258,7 +244,5 @@ $data	= mysqli_fetch_array($result);
 			}
 		}
 	</script>
-
 </body>
-
 </html>

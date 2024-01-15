@@ -2,6 +2,7 @@
 session_start();
 
 include("../../config/database.php");
+include("../../main_utils/navigation.php");
 if (!verifyUser($con)) {
 	header("Location: index.php");
 	return false;
@@ -117,11 +118,19 @@ $data	= mysqli_fetch_array($result);
 		<a href="main.php" class="w3-bar-item w3-large" style="border-bottom: 2px solid #877272f0;"><img src="../../images/logo.png" class="w3-padding" style="width:216px;"></a>
 		<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
 
-		<a href="main.php" class="w3-bar-item w3-button">
-			<i class="fa fa-fw fa-tachometer-alt w3-margin-right"></i> DASHBOARD</a>
+		<?php 
+			$menu_url = returnMenu($_SESSION['role']);
+		?>
+		<?php foreach ($menu_url as $menu) {?>
+			<?php if ($menu['name'] == 'Profile') {?>
+				<a href="<?php echo $menu['link']; ?>" class="w3-bar-item w3-button w3-pale-blue">
+					<i class="<?php echo $menu['icon'];?>"></i> <?php echo $menu['name'];?></a>
+			<?php } else { ?>
 
-		<a href="profile.php" class="w3-bar-item w3-button w3-pale-blue">
-			<i class="fa fa-fw fa-user w3-margin-right"></i> PROFILE</a>
+				<a href="<?php echo $menu['link']; ?>" class="w3-bar-item w3-button  ">
+					<i class="<?php echo $menu['icon'];?>"></i> <?php echo $menu['name'];?></a>
+			<?php } ?>
+		<?php } ?>
 	</nav>
 
 

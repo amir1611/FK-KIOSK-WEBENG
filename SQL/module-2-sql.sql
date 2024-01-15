@@ -19,13 +19,13 @@ CREATE TABLE IF NOT EXISTS `kiosk` (
   `id_kiosk` int NOT NULL AUTO_INCREMENT,
   `id_user` int NOT NULL DEFAULT '0',
   `kiosk_name` varchar(500) NOT NULL DEFAULT '0',
-  `operating_hours` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
-  `kiosk_information` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `operating_hours` varchar(500) NOT NULL DEFAULT '0',
+  `kiosk_information` varchar(500) NOT NULL DEFAULT '0',
   `status` varchar(50) DEFAULT '0',
   `kiosk_img_dir` longtext NOT NULL,
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id_kiosk`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- Data exporting was unselected.
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `image_dir` longtext NOT NULL,
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- Data exporting was unselected.
 

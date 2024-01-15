@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id_admin`)
-) 
+); 
 -- Dumping data for table fkkiosk.admin: ~0 rows (approximately)
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `email`) VALUES
 	(1, 'admin', '1234', 'admin@gmail.com');
@@ -31,13 +31,13 @@ CREATE TABLE IF NOT EXISTS `kiosk` (
   `id_kiosk` int NOT NULL AUTO_INCREMENT,
   `id_user` int NOT NULL DEFAULT '0',
   `kiosk_name` varchar(500) NOT NULL DEFAULT '0',
-  `operating_hours` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
-  `kiosk_information` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `operating_hours` varchar(500) NOT NULL DEFAULT '0',
+  `kiosk_information` varchar(500) NOT NULL DEFAULT '0',
   `status` varchar(50) DEFAULT '0',
   `kiosk_img_dir` longtext NOT NULL,
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id_kiosk`)
-) 
+); 
 
 -- Dumping data for table fkkiosk.kiosk: ~2 rows (approximately)
 INSERT INTO `kiosk` (`id_kiosk`, `id_user`, `kiosk_name`, `operating_hours`, `kiosk_information`, `status`, `kiosk_img_dir`, `updated_at`) VALUES
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `image_dir` longtext NOT NULL,
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id_menu`)
-) 
+); 
 
 -- Dumping data for table fkkiosk.menu: ~5 rows (approximately)
 INSERT INTO `menu` (`id_menu`, `id_kiosk`, `menu_name`, `price`, `status`, `image_dir`, `updated_at`) VALUES
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `document` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL,
   PRIMARY KEY (`id_user`)
-)
+);
 
 -- Dumping data for table fkkiosk.user: ~2 rows (approximately)
 INSERT INTO `user` (`id_user`, `role`, `name`, `phone`, `email`, `password`, `document`, `status`) VALUES

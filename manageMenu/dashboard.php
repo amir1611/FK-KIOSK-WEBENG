@@ -2,13 +2,15 @@
 	session_start();
 	include("../config/database.php");
 	include("./utils/navigation.php");
+
+	$id_kiosk = $_SESSION['id_kiosk'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../w3.css">
+    <link rel="stylesheet" href="../w3.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Manage Menu Dashboard</title>
@@ -118,10 +120,16 @@
 				<!-- The Grid -->
 				<div class="w3-row ">
 
+					<?php 
+						$menu_query = "SELECT count(*) as total FROM `menu` WHERE `id_kiosk` = '$id_kiosk'";
+						$result = mysqli_query($con,$menu_query);
+						$data = mysqli_fetch_assoc($result);
+					?>
+
 					<div class="w3-col m3 w3-container w3-padding">
 						<div class="w3-card w3-border w3-white w3-center w3-round-xlarge w3-margin w3-padding w3-padding-16 glow-animation">
 							<div class="w3-row"><i class="fa fa-fw fa-book-reader fa-2x w3-left w3-text-blue"></i></div>
-							<h1><b>4</b></h1>
+							<h1><b id="menu-count"><?php echo $data['total']; ?></b></h1>
 							Menus<br>
 						</div>
 					</div>
@@ -130,7 +138,7 @@
 					<div class="w3-col m3 w3-container w3-padding">
 						<div class="w3-card w3-border w3-white w3-center w3-round-xlarge w3-margin w3-padding w3-padding-16 glow-animation">
 							<div class="w3-row"><i class="fa fa-fw fa-check fa-2x w3-left w3-text-blue"></i></div>
-							<h1><b>20</b></h1>
+							<h1><b id="order-count">20</b></h1>
 							Orders<br>
 						</div>
 					</div>
@@ -138,15 +146,25 @@
 					<div class="w3-col m3 w3-container w3-padding">
 						<div class="w3-card w3-border w3-white w3-center w3-round-xlarge w3-margin w3-padding w3-padding-16 glow-animation">
 							<div class="w3-row"><i class="fa fa-fw fa-chart-pie fa-2x w3-left w3-text-blue"></i></div>
-							<h1><b>20</b></h1>
+							<h1><b id="sales-count">20</b></h1>
 							Total Sales<br>
 						</div>
 					</div>
 
+					<?php 
+						$menu_query = "SELECT `status` FROM `kiosk` WHERE `id_kiosk` = '$id_kiosk'";
+						$result = mysqli_query($con,$menu_query);
+						$data = mysqli_fetch_assoc($result);
+						$status = (isset($data['status'])) ? trim($data['status']) : '';
+					?>
 					<div class="w3-col m3 w3-container w3-padding">
 						<div class="w3-card w3-border w3-white w3-center w3-round-xlarge w3-margin w3-padding w3-padding-16 glow-animation">
 							<div class="w3-row"><i class="fa fa-fw fa-user-check fa-2x w3-left w3-text-blue"></i></div>
-							<h1><span class="w3-text-green">Open</span></h1>
+							<?php if ($status == 'open') {?>
+								<h1><span id="kiosk-status" class="w3-text-green"><?php echo $status; ?></span></h1>
+							<?php } else {?>
+								<h1><span id="kiosk-status" class="w3-text-red"><?php echo $status; ?></span></h1>
+							<?php }?>
 							Current Kiosk Status<br>
 						</div>
 					</div>
@@ -186,6 +204,12 @@
 
 
 	</div>
+
+	<script>
+		$(document).ready(function() {
+
+		});
+	</script>
 
 	<script>
 		var food1 = 20;

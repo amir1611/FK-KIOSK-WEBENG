@@ -2,12 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 08, 2023 at 04:35 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
-
-/*LAST MODIFIED: 12.00 PM - 11/12/2023 - AMIR */
+-- Host: localhost:3306
+-- Generation Time: Jan 15, 2024 at 11:45 AM
+-- Server version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,31 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id_admin` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id_admin`, `username`, `password`, `email`) VALUES
-(1, 'admin', '1234', 'admin@gmail.com');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
+  `id_user` int NOT NULL,
   `role` varchar(10) NOT NULL,
   `name` varchar(100) NOT NULL,
   `phone` varchar(40) NOT NULL,
@@ -58,25 +36,19 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL,
   `document` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `role`, `name`, `phone`, `email`, `password`, `document`, `status`) VALUES
-(1, 'vendor', 'Muhammad Hanif', '0198888888', 'vendor@gmail.com', '1234', 'user.pdf', 'Pending'),
-(2, 'user', 'Nur Atirah', '0198888888', 'user@gmail.com', '1234', 'vendor.pdf', 'Approved');
+(19, 'user', 'MUHAMMAD AMIR BIN MOHAMED ALI', '0192291001', 'amir@gmail.com', '1234', 'ic_amir.pdf', 'Approved'),
+(20, 'vendor', 'Balqis Binti Haziq', '0182281001', 'balqis@gmail.com', '1234', 'business_proposal_balqis.pdf', 'Approved');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `user`
@@ -89,16 +61,10 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

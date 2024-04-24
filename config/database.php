@@ -9,7 +9,7 @@ $dbName = "fkkiosk";	// Database name
 
 
 $dbUser = "root";		// Change according to your phpMyAdmin Username
-$dbPass = "";		//  Change according to your phpMyAdmin Password
+$dbPass = "1234";		//  Change according to your phpMyAdmin Password
 
 $con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 

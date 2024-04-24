@@ -62,7 +62,7 @@ if ($act == "login") {
 	}
 
 	/* Full height image header */
-	.bgimg-1 {`
+	.bgimg-1 {
 		background-position: top;
 		background-size: cover;
 		background-attachment: fixed;
